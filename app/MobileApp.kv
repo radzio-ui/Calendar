@@ -1,0 +1,165 @@
+PageLayoutExample:
+#:set s dp(150)
+<CanvasExample1>:
+    canvas:
+        Rectangle:
+            pos: self.center_x - s/2, self.center_y - s/2
+            size: s,s
+        Line:
+            #points: (x,y,x2,y2)
+            points: (0, self.height/2, self.width,self.height/2)
+        Line:
+            points: (self.width/2, 0, self.width/2, self.height)
+            width: 4
+
+<CanvasExample2>:
+    canvas:
+        Line:
+            circle: (200,200,100) # center_x, center_y, radius
+        Line:
+            ellipse: (400,300,100, 200) # center_x, center_y, radius_x, radius_y
+<ImagesExample@GridLayout>:
+    cols: 3
+    Image:
+        source: "C:/Users/48507/PycharmProjects/calendar/RESOURCES_KIVY/1_THE_LAB/2_the_lab_widgets/images/cake.jpg"
+    Image:
+        allow_stretch: True
+        source: "C:/Users/48507/PycharmProjects/calendar/RESOURCES_KIVY/1_THE_LAB/2_the_lab_widgets/images/cake.jpg"
+    Image:
+        source: "C:/Users/48507/PycharmProjects/calendar/RESOURCES_KIVY/1_THE_LAB/2_the_lab_widgets/images/cake.jpg"
+        allow_stretch: True
+        keep_ratio: False
+<WidgetsExample@GridLayout>:
+    cols: 3
+    ToggleButton:
+        text: "toggle"
+        on_state: root.on_toggle_button_state(self)
+
+    Button:
+        text:"click here"
+        on_press: root.on_button_press()
+        disabled: not root.count_enabled
+    Label:
+        text: root.my_text
+        font_name: "C:/Users/48507/PycharmProjects/calendar/RESOURCES_KIVY/1_THE_LAB/2_the_lab_widgets/fonts/Lcd.ttf"
+        font_size: "80dp"
+
+    Switch:
+        id: my_switch
+        disabled: False
+        on_active: root.on_switch_active(self)
+        active: True
+    Slider:
+        id: slider
+        min: 0
+        max: 100
+        value: 50
+        orientation: "vertical"
+        #on_value: root.on_slider_value(self)
+        disabled: not my_switch.active
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: str(int(slider.value))
+        ProgressBar:
+            max: 100
+            value: slider.value
+    TextInput:
+        id: my_input
+        multiline: False
+        on_text_validate: root.on_text_validate(self)
+    Label:
+        text: root.text_input
+
+
+
+<PageLayoutExample@PageLayout>:
+    MainWidget:
+    BoxLayoutExample:
+    AnchorLayoutExample:
+    GridLayoutExample:
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample:
+        size_hint: 1,None
+        height: self.minimum_height
+
+<StackLayoutExample>:
+    #left-right, top-bottom
+    #orientation: "rl-bt"
+    # padding: ("20dp", "20dp","20dp", "20dp")
+    # spacing: "20dp", "20dp"
+
+<GridLayoutExample@GridLayout>:
+    rows: 2
+    columns: 3
+    Button:
+        text: "A"
+        # fix size
+        size_hint: None, 1
+        width: "60dp"
+    Button:
+        text: "B"
+
+    Button:
+        text: "C"
+    Button:
+        text: "D"
+        size_hint: None, 1
+        width: "60dp"
+    Button:
+        text: "E"
+    Button:
+        text: "F"
+
+
+<AnchorLayoutExample@GridLayout>:
+    # right, left, center
+    anchor_x: "center"
+    # bottom, top, center
+    anchor_y: "top"
+    BoxLayout:
+        size_hint: .2,.2
+        Button:
+            text: "A"
+
+        Button:
+            text: "B"
+
+<BoxLayoutExample>:
+    Button:
+        text: "1"
+        # size: "40dp", "60dp"
+        # size_hint: None,None
+        size_hint: 0.5,0.5
+        # pos hints - x, center_x, right
+        # pos hints - y, center_y, top
+        pos_hint: {"top": 0.75}
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+        Button:
+            text: "C"
+    Button:
+        text: "2"
+        # width: "100dp"
+        # height: "100dp"
+        size_hint: 0.5,0.5
+
+<MainWidget>:
+    Button:
+        text: "Button"
+        size: "40dp", "60dp"
+        pos: "100dp", "200dp"
+        color: 1,0,1,1
+    Label:
+        text: "Button"
+        size: "40dp", "60dp"
+        pos: "200dp", "200dp"
+        # color: r, g, b, a
+        color: 1,0,0,1

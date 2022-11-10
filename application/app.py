@@ -101,7 +101,6 @@ class CalApp(App):
         self.master.add_widget(self.header)
         self.master.add_widget(self.scroll_layout)
         self.scroll_layout.add_widget(CalendarLayout().draw_calendar(Data.curr_date))
-        return self.master
 
 
 CalApp().run()

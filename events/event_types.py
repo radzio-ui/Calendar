@@ -14,6 +14,8 @@ class Event:
         self._notes: str = notes
         self._note_count = 1
         self._name = name
+        now = datetime.now()
+        self.__creation_date = now.strftime("%Y_%m_%d")
 
     """the type"""
 
@@ -62,19 +64,19 @@ class Event:
     def event_date(self, other: datetime):
         self._event_date = other
 
-    def __str__(self):
+    def __repr__(self):
         if self.event_date_end is None:
-            return f'Event {self.event_type}, at {self._event_date}, notes:\n{self._notes}'
-        return f'Event {self.event_type}, {self._event_date}, notes:\n{self._notes}'
+            return f'Event {self.event_type}, at {self._event_date_start}, notes:\n{self._notes}'
+        return f'Event {self.event_type}, {self._event_date_start}, notes:\n{self._notes}'
 
     @staticmethod
     def save_event(user, event):
         with open(user + '.txt', 'at', encoding='utf-8') as f:
-            f.write(str(event.__dict__))
+            f.write(str(event.__dict__)+'\n')
 
     @staticmethod
     def load_event(user):
-        with open(user + '.txt', 'at', encoding='utf-8') as f:
+        with open(user + '.txt', 'rt', encoding='utf-8') as f:
             return f.read()
 
 

@@ -11,7 +11,7 @@ def test_event():
     print(e)
     print(type(e))
     assert e.notes
-    assert e._event_date
+    assert e._event_date_start
     assert isinstance(e, Event)
 
 

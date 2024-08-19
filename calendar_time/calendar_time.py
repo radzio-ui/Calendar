@@ -36,6 +36,7 @@ class CalDates:
             date = datetime.date(year=year, month=month, day=1)
             return str(date)
         date = datetime.date(year=int(month_and_year[:4]), month=(int(month_and_year[5:7]) + 1), day=1)
+        print(f"increase_one_month {date=}")
         return str(date)
 
     @staticmethod
@@ -62,14 +63,17 @@ class CalDates:
             return nd.strftime("%B")
 
 
-print(CalDates.rev_weekdays)
-print(CalDates.today_date())
-today = CalDates.today_date()
-print(CalDates.current_month_and_year())
-print(CalDates.month_day_start(CalDates.current_month_and_year()))
-print('days in current month: ' + str(CalDates.days_in_month(CalDates.current_month_and_year())))
-next_m = CalDates.increase_one_month(today)
-print(CalDates.month_name(next_m))
-print(next_m)
-next_m = CalDates.increase_one_month(next_m)
-print(next_m)
+# print(CalDates.rev_weekdays)
+# print(CalDates.today_date())
+# today = CalDates.today_date()
+# print(CalDates.current_month_and_year())
+# print(type(today))
+# print(CalDates.month_day_start(CalDates.current_month_and_year()))
+# print(type(today))
+#
+# print('days in current month: ' + str(CalDates.days_in_month(CalDates.current_month_and_year())))
+# next_m = CalDates.increase_one_month(today)
+# print(CalDates.month_name(next_m))
+# print(next_m)
+# next_m = CalDates.increase_one_month(next_m)
+# print(next_m)

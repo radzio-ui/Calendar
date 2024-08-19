@@ -77,6 +77,8 @@ class MyApp(App):
 
     def go_to_create_event(self, instance):
         app.root.current = 'create_event'
+
+
 if __name__ == "__main__":
     app = MyApp()
     app.run()

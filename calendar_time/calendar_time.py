@@ -20,32 +20,36 @@ class CalDates:
 
     @staticmethod
     def current_month_and_year() -> str:
-        """:returns date in format 2022-10"""
+        """:returns date in format yyyy-mm"""
         return str(datetime.datetime.today())[:7]
 
     @staticmethod
     def today_date() -> str:
-        """date format rrrr-mm-dd"""
+        """:returns date format yyyy-mm-dd"""
         return str(datetime.date.today())
 
     @staticmethod
     def increase_one_month(month_and_year: str) -> str:
+        """Adds 1 month to month_and_year.
+        :returns date format yyyy-mm"""
         if int(month_and_year[5:7]) + 1 == 13:
             year = int(month_and_year[:4]) + 1
             month = 1
             date = datetime.date(year=year, month=month, day=1)
             return str(date)
         date = datetime.date(year=int(month_and_year[:4]), month=(int(month_and_year[5:7]) + 1), day=1)
-        print(f"increase_one_month {date=}")
         return str(date)
 
     @staticmethod
     def decrease_one_month(month_and_year: str) -> str:
+        """Adds 1 month to month_and_year.
+        :returns date format yyyy-mm"""
         date = datetime.date(year=int(month_and_year[:4]), month=(int(month_and_year[5:7]) - 1), day=1)
         return str(date)
 
     @staticmethod
     def days_in_month(month_and_year: str) -> int:
+        """:returns number of days in month"""
         nd = datetime.date(year=int(month_and_year[:4]), month=(int(month_and_year[5:7])), day=1)
         next_month = nd.replace(day=28) + datetime.timedelta(days=4)
         days = next_month - datetime.timedelta(days=next_month.day)
@@ -53,6 +57,7 @@ class CalDates:
 
     @staticmethod
     def month_name(date) -> str:
+        """:returns full name of a month, e.g. September (title str format)"""
         if not isinstance(date, str):
             return date.strftime("%B")
         else:
@@ -61,7 +66,6 @@ class CalDates:
             except ValueError:
                 nd = datetime.datetime.strptime(date, '%Y-%m-%d')
             return nd.strftime("%B")
-
 
 # print(CalDates.rev_weekdays)
 # print(CalDates.today_date())

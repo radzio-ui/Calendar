@@ -4,10 +4,10 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen
 from kivy.uix.textinput import TextInput
-
+from kivymd.uix.pickers import MDDatePicker
 
 class EventData:
-    fields = ["name", "event_date_start", "event_date_end", "event_type", "notes", "cyclic", "notification"]
+    fields = ["name", "type", "event_date_start", "event_date_end", "event_type", "notes", "cyclic", "notification"]
     event_list = tuple(['dumdumdum'] * 10)
 
     @classmethod
@@ -22,7 +22,6 @@ class EventsWindow(Screen):
         self.event_window_layout = BoxLayout()
         self.orientation = "vertical"
 
-        # TODO: Implement events view
         CreateEventWindow()
         back_button = Button(text="Back to Main", on_press=self.go_to_main)
         create_button = Button(text="Create Event", on_press=self.go_to_create_event)
@@ -40,20 +39,24 @@ class EventsWindow(Screen):
 class CreateEventWindow(Screen):
     def __init__(self, **kwargs):
         super(CreateEventWindow, self).__init__(**kwargs)
-        self.create_event_layout = GridLayout(cols=2, rows=len(EventData.fields) + 2)
+        self.create_event_layout = GridLayout(cols=2, rows=len(EventData.fields) + 2, padding=(50, 20))
         self.draw_create_event_layout()
         self.add_widget(self.create_event_layout)
 
     def draw_create_event_layout(self):
-        self.create_event_layout.add_widget(Label(text="Create New Event!"))
-        self.create_event_layout.add_widget(Button(text="Save"))
+        self.create_event_layout.add_widget(Label(text="Create New Event!", size_hint=(0.95, 1)))
+        self.create_event_layout.add_widget(Button(text="X", size_hint=(0.05, 1)))
 
         for _, field in zip(range(len(EventData.fields)), EventData.fields):
             self.create_event_layout.add_widget(
                 Label(text=field, height=40, halign='center', valign='middle', bold=True))
-            self.create_event_layout.add_widget(TextInput(hint_text=field))
-        self.create_event_layout.add_widget(Button(text="Save"))
+            if field in ["event_date_start", "event_date_end"]:
+                date = MDDatePicker()
+                self.create_event_layout.add_widget(date)
+            else:
+                self.create_event_layout.add_widget(TextInput(hint_text=field))
         self.create_event_layout.add_widget(Button(text="Cancel"))
+        self.create_event_layout.add_widget(Button(text="Save"))
         return self.create_event_layout
 
 

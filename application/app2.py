@@ -1,4 +1,4 @@
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.logger import Logger
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -50,7 +50,7 @@ class MainWindow(Screen):
         app.root.current = "settings"
 
 
-class MyApp(App):
+class MyApp(MDApp):
     def build(self):
         # self.root = BoxLayout(orientation="vertical")
 

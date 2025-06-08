@@ -104,3 +104,9 @@ class Car(Event):
     def __init__(self, name, event_date_start, event_date_end=None, event_type='Car', notes=''):
         super().__init__(name, event_date_start, event_date_end, notes)
         self._event_type = event_type
+
+
+class CustomEvent(Event):
+    def __init__(self, name, event_date_start, event_type, event_date_end=None, notes=''):
+        super().__init__(name, event_date_start, event_date_end, notes)
+        self._event_type = event_type
